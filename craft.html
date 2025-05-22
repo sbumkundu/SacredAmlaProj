@@ -3,234 +3,215 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bamboo Craft Products</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <title>SacredBamboo</title>
+  <!-- Premium serif heading font and system body font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Environmental color palette */
       --primary: #2E5339;
       --secondary: #A3C293;
       --accent: #F0EAD6;
-      --text: #2E2E2E;
+      --text: #333333;
       --white: #ffffff;
+      --divider: #E3E3E3;
+      --bg: #FAFAFA;
+      --body-font-size: 1.125rem;
+      --body-font-weight: 500;
+      --heading-font-size: clamp(3.5rem, 8vw, 5.5rem);
+      --subheading-font-size: clamp(2rem, 4vw, 3rem);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      font-family: 'Open Sans', sans-serif;
-      line-height: 1.6;
-      background-color: var(--accent);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: var(--text);
+      background: var(--bg);
+      font-weight: var(--body-font-weight);
+      font-size: var(--body-font-size);
+      line-height: 1.6;
+      /* allow horizontal scroll where needed */
+      overflow-x: hidden;
     }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    header { position: sticky; top: 0; background: var(--white); border-bottom: 1px solid var(--divider); z-index: 10; }
+    header .container { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 4px;
     }
-    /* Header */
-    header {
-      background-color: var(--white);
-      padding: 20px 0;
-      border-bottom: 1px solid #e0e0e0;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color .2s;
     }
-    header .container {
+    nav a:hover { color: var(--primary); }
+    section { padding: 100px 0; border-bottom: 1px solid var(--divider); }
+    section:last-of-type { border-bottom: none; }
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('images/wokingwom.jpg') center/cover no-repeat fixed;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-    }
-    header h1 {
-      font-family: 'Merriweather', serif;
-      font-size: 24px;
-      color: var(--primary);
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: #1B472A;
-    }
-    /* Hero Section */
-    .hero {
-      background: url('images/IMG_7712[1].JPEG') no-repeat center center/cover;
-      color: var(--white);
+      justify-content: center;
       text-align: center;
-      padding: 100px 0;
+      position: relative;
+      margin-bottom: -1px;
     }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.5));
+      z-index: 0;
+    }
+    .hero .container { position: relative; z-index: 1; color: var(--white); }
     .hero h2 {
-      font-family: 'Merriweather', serif;
-      font-size: 48px;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+      font-family: 'Playfair Display', serif;
+      font-size: var(--heading-font-size);
+      margin-bottom: 1rem;
+      text-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      line-height: 1.1;
     }
     .hero p {
-      font-size: 20px;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .btn {
-      display: inline-block;
-      background-color: var(--primary);
-      color: var(--white);
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      font-weight: 600;
-    }
-    .btn:hover {
-      background-color: #1B472A;
-    }
-    /* Products Section */
-    .products {
-      padding: 60px 0;
-      background-color: var(--white);
-    }
-    .products h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-family: 'Merriweather', serif;
+    .hero .btn {
+      background: var(--white);
       color: var(--primary);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: background .3s, color .3s;
+    }
+    .hero .btn:hover { background: var(--primary); color: var(--white); }
+
+    /* Products Carousel - ensure visible and scrollable */
+    .products .container { display: block; }
+    .products h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--subheading-font-size);
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
     .product-grid {
       display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 32px;
+      overflow-x: auto;
+      padding: 0 24px 16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
+    .product-grid::-webkit-scrollbar { height: 8px; }
+    .product-grid::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 4px; }
     .product-card {
-      background-color: var(--accent);
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 20px;
-      width: 300px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      flex: 0 0 80%; /* show majority of card but allow scroll */
+      max-width: 320px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      scroll-snap-align: start;
+      transition: transform .3s, box-shadow .3s;
     }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
     .product-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 15px;
+      width: 100%; height: auto; display: block;
+      border-top-left-radius: 12px; border-top-right-radius: 12px;
     }
+    .product-card .info { padding: 24px; }
     .product-card h3 {
-      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
       color: var(--primary);
-      font-family: 'Merriweather', serif;
-      font-size: 18px;
     }
     .product-card p {
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-    /* Checkout Button Under Products */
-    .checkout {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .checkout .btn {
-      font-size: 18px;
-    }
-    /* Explore Section */
-    .explore {
-      padding: 60px 0;
-      background-color: var(--accent);
-    }
-    .explore h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-family: 'Merriweather', serif;
-      color: var(--primary);
-    }
-    .explore p {
-      max-width: 800px;
-      margin: 0 auto 20px;
-      text-align: center;
+      font-size: 1.125rem;
+      font-weight: 400;
       color: var(--text);
     }
-    /* Contact Section */
-    .contact {
-      padding: 60px 0;
-      background-color: var(--white);
+    .checkout { padding: 0 24px; margin-top: 1.5rem; }
+    .checkout .btn { display: inline-block; font-size: 1.125rem; padding: 0.75rem 2rem; }
+
+    /* Explore */
+    .explore .container { display: flex; flex-direction: column; align-items: flex-start; }
+    .explore h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--subheading-font-size);
+      font-weight: 700;
+      margin-bottom: 1rem;
     }
+    .explore-img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 24px; }
+    .explore p {
+      font-size: 1.125rem;
+      font-weight: 400;
+      max-width: 700px;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+
+    /* Contact */
+    .contact .container { display: flex; flex-direction: column; align-items: center; }
     .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--subheading-font-size);
+      font-weight: 700;
       text-align: center;
-      margin-bottom: 20px;
-      font-family: 'Merriweather', serif;
+      margin-bottom: 1rem;
       color: var(--primary);
     }
     .contact p {
+      font-size: 1.125rem;
+      font-weight: 400;
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 16px;
-    }
-    .contact form {
+      margin-bottom: 2rem;
+      color: var(--secondary);
       max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
     }
-    .contact input,
-    .contact textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-family: inherit;
-      font-size: 16px;
+    .contact form { width: 100%; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .contact input, .contact textarea {
+      width: 100%; padding: 12px; border: 1px solid var(--divider); border-radius: 8px;
+      font-size: 1rem; font-weight: 400; color: var(--text);
     }
     .contact button {
-      align-self: flex-end;
-      background-color: var(--secondary);
-      color: var(--white);
-      padding: 12px 25px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      align-self: flex-end; padding: 0.75rem 2rem; font-size: 1rem; font-weight: 700;
+      background: var(--primary); color: var(--white); border: none; border-radius: 8px;
+      cursor: pointer; transition: background .3s;
     }
-    .contact button:hover {
-      background-color: #8BAE82;
-    }
-    /* Footer */
-    footer {
-      background-color: var(--white);
-      text-align: center;
-      padding: 20px 0;
-      border-top: 1px solid #e0e0e0;
-    }
-    footer p {
-      color: #777;
-      font-size: 14px;
+    .contact button:hover { background: #1B472A; }
+
+    footer { text-align: center; padding: 80px 0; font-size: 0.875rem; color: var(--text); }
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.5rem; letter-spacing: 2px; }
+      .hero h2 { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .products { padding: 80px 0; }
+      .product-card { flex: 0 0 100%; max-width: 320px; }
+      .explore, .contact { padding: 80px 0; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>Bamboo Craft Products</h1>
+      <h1>SacredBamboo</h1>
       <nav>
         <ul>
           <li><a href="#shop">Shop</a></li>
@@ -252,34 +233,23 @@
   <section id="shop" class="products">
     <div class="container">
       <h2>Our Products</h2>
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="images/IMG_7708.JPEG.jpg" alt="Bamboo Basket" />
-          <h3>Bamboo Basket</h3>
-          <p>Handwoven basket perfect for storage and décor.</p>
-        </div>
-        <div class="product-card">
-          <img src="images/bamboolamp.png.webp" alt="Bamboo Lamp" />
-          <h3>Bamboo Lamp</h3>
-          <p>Illuminate your space with this eco-friendly lamp.</p>
-        </div>
-        <div class="product-card">
-          <img src="images/image.png" alt="Bamboo Chair" />
-          <h3>Bamboo Chair</h3>
-          <p>Comfortable and sustainable seating solution.</p>
-        </div>
-      </div>
-      <div class="checkout">
-        <a href="#contact" class="btn">Proceed to Checkout</a>
-      </div>
     </div>
+    <div class="product-grid">
+      <div class="product-card"><img src="images/product.jpg" alt="Bamboo Basket"><div class="info"><h3>Bamboo Basket</h3><p>Perfect for storage and décor.</p></div></div>
+      <div class="product-card"><img src="images/product-lamp.jpg" alt="Bamboo Lamp"><div class="info"><h3>Bamboo Lamp</h3><p>Illuminate your space sustainably.</p></div></div>
+      <div class="product-card"><img src="images/stand.jpg" alt="Bamboo Chair"><div class="info"><h3>Bamboo Chair</h3><p>Comfortable & sustainable seating.</p></div></div>
+      <div class="product-card"><img src="images/bamboo-button.jpg" alt="Bamboo Buttons"><div class="info"><h3>Bamboo Buttons</h3><p>Eco-friendly buttons for crafts.</p></div></div>
+      <div class="product-card"><img src="images/bamboo-lamps.jpg" alt="Bamboo Lamps"><div class="info"><h3>Bamboo Lamps</h3><p>Set the mood with natural light.</p></div></div>
+    </div>
+    <div class="checkout container"><a href="#contact" class="btn">Proceed to Checkout</a></div>
   </section>
 
   <section id="explore" class="explore">
     <div class="container">
       <h2>Explore Our Craftsmanship</h2>
+      <img src="images/artisan.jpg" alt="Artisan crafting bamboo" class="explore-img">
       <p>Learn about the traditional techniques and sustainable practices behind our bamboo products.</p>
-      <p>Bamboo craft is a timeless expression of nature, tradition, and skill. Artisans, often from indigenous communities, transform humble bamboo into exquisite objects using age-old techniques passed down through generations. Each product is a testament to meticulous handwork—from selecting the right stalks and slicing them with precision, to weaving, bending, and binding them into functional and artistic forms. This eco-friendly craft not only celebrates sustainability but also preserves cultural heritage, blending utility with beauty in every creation.</p>
+      <p>Artisans from indigenous communities transform bamboo into exquisite objects using age-old techniques passed down through generations.</p>
     </div>
   </section>
 
@@ -288,8 +258,8 @@
       <h2>Contact Us</h2>
       <p>Have questions or custom requests? Reach out to us!</p>
       <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
         <textarea placeholder="Your Message or Custom Request" rows="5" required></textarea>
         <button type="submit">Send Message</button>
       </form>
@@ -298,7 +268,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Bamboo Craft Products. All rights reserved.</p>
+      <p>&copy; 2025 SacredBamboo. All rights reserved.</p>
     </div>
   </footer>
 </body>
